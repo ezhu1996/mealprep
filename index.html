@@ -35,7 +35,7 @@
     <label>Password:<br>
         <input id="password_input" type="password">
     </label>
-    <button id="login">Log in</button>
+    <button onclick="validate_credentials()" id="login">Log in</button>
 </div>
 <div class="container">
     <!-- Responsive calendar - START -->
@@ -60,6 +60,11 @@
     </div>
     <!-- Responsive calendar - END -->
 </div>
+<script>
+    function validate_credentials() {
+        alert("wrong password!");
+    }
+</script>
 <script>
     AWS.config.region = "us-east-2";
     AWS.config.credentials = new AWS.CognitoIdentityCredentials({

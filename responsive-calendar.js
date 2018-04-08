@@ -1,3 +1,8 @@
+function fun() {
+  var day_clicked = document.get
+  window.location='recipe.html';
+
+}
 (function() {
 
   (function($) {
@@ -20,6 +25,9 @@
       return null;
     };
     Calendar.prototype = {
+      fun: function() {
+        alert("hello");
+      },
       addLeadingZero: function(num) {
         if (num < 10) {
           return "0" + num;
@@ -208,7 +216,7 @@
             dateString = yearNum + "-" + this.addLeadingZero(monthNum) + "-" + this.addLeadingZero(dayNum);
           }
         }
-        day.append($("<a>" + dayNum + "</a>").attr("data-day", dayNum).attr("data-month", monthNum).attr("data-year", yearNum));
+        day.append($("<a onclick='fun()'>" + dayNum + "</a>").attr("data-day", dayNum).attr("data-month", monthNum).attr("data-year", yearNum));
         if (this.options.monthChangeAnimation) {
           this.applyTransform(day, 'rotateY(180deg)');
           this.applyBackfaceVisibility(day);
