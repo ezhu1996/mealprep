@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
     <!-- Respomsive slider -->
     <link href="responsive-calendar.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="https://unpkg.com/angular-calendar@0.23.7/css/angular-calendar.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="aws-sdk.js"></script>
     <script src="aws-sdk-2.222.1.js"></script>
 </head>
@@ -60,6 +60,24 @@
     </div>
     <!-- Responsive calendar - END -->
 </div>
+<div ng-app="myApp" ng-controller="customersCtrl">
+
+    <ul>
+        <li ng-repeat="x in myData">
+            {{ x.Name + ', ' + x.Country }}
+        </li>
+    </ul>
+
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('customersCtrl', function($scope, $http) {
+        $http.get('https://www.w3schools.com/angular/customers.php').then(function (response) {
+            $scope.myData = response.data.records;
+        });
+    });
+</script>
 <script>
     function validate_credentials() {
         alert("wrong password!");
