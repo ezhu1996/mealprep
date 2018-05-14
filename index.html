@@ -64,6 +64,7 @@
 
     <ul>
         <li ng-repeat="x in myData">
+            <!--{{ x.name + ', ' + x.data }}-->
             {{ x.Name + ', ' + x.Country }}
         </li>
     </ul>
@@ -71,12 +72,20 @@
 </div>
 
 <script>
-    var app = angular.module('myApp', []);
-    app.controller('customersCtrl', function($scope, $http) {
-        $http.get('https://www.w3schools.com/angular/customers.php').then(function (response) {
-            $scope.myData = response.data.records;
-        });
-    });
+    // var app = angular.module('myApp', []);
+    // app.controller('customersCtrl', function($scope, $http) {
+    //
+    //     //$http.get('https://9xugii2re4.execute-api.us-east-1.amazonaws.com/newStage/event').then(function (response) {
+    //         $http.get('https://www.w3schools.com/angular/customers.php').then(function (response) {
+    //         //var json = JSON.stringify(response);
+    //         $scope.myData = response.data.records;
+    //     });
+    // });
+    function testhttp() {
+        this.http.get('https://9xugii2re4.execute-api.us-east-1.amazonaws.com/newStage/event').map(response => console.log(response)).subscribe(result => console.log(result))
+    }
+    testhttp();
+
 </script>
 <script>
     function validate_credentials() {
@@ -88,7 +97,6 @@
     AWS.config.credentials = new AWS.CognitoIdentityCredentials({
         IdentityPoolId: 'us-east-2:a9cf0c68-62b0-4481-9d80-773d0cde2737',
     });
-    AWS.config.credentials.get(function(){
         var syncClient = new AWS.CognitoSyncManager();
         syncClient.openOrCreateDataset('myDataset', function(err,dataset) {
             dataset.put('myKey', 'myValue', function(err,record){
